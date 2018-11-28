@@ -33,7 +33,12 @@ $app->get(
   function() use($app) {
     $app['monolog']->addDebug( 'logging output.' );
 
+    /*/
     return $app->sendFile(
+      './client/index.html'
+    );
+    //*/
+    return $app->redirect(
       './client/index.html'
     );
   }
