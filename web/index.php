@@ -46,13 +46,16 @@ $app->get(
 
 $app->post(
   '/test-post/',
-  function() use($app) {
+  function(
+    Request $request
+  ) use( $app ) {
     $app['monolog']->addDebug( 'logging output.' );
 
 
     $responseData = array(
       'test1' => 'this is a test',
-      'test2' => 'to see how silax does post endpoints'
+      'test2' => 'to see how silax does post endpoints',
+      'request' => encode_json( $request )
     );
 
     return $app->json(
