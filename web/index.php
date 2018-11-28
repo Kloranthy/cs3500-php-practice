@@ -58,13 +58,13 @@ $app->post(
     );
 
     $app['monolog']->addDebug(
-      'request message: ' . $requestData->message
+      'request message: ' . $requestData['message']
     );
 
     $responseData = array(
       'test1' => 'this is a test',
       'test2' => 'to see how silax does post endpoints',
-      'requestMessage' => $requestData->message
+      'requestMessage' => $requestData['message']
     );
 
 
