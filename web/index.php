@@ -51,12 +51,20 @@ $app->post(
   function(
     Request $request
   ) use( $app ) {
-    $app['monolog']->addDebug( 'request content: ' . $request->getContent() );
+    // todo: check content type = app/json
+    $requestData = json_decode(
+      $request->getContent(),
+      true
+    );
+
+    $app['monolog']->addDebug(
+      'request message: ' . $requestData->message
+    );
 
     $responseData = array(
       'test1' => 'this is a test',
       'test2' => 'to see how silax does post endpoints',
-      'request' => $request->getContent()
+      'requestMessage' => $requestData->message
     );
 
 
