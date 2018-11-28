@@ -52,13 +52,19 @@ $app->post(
     Request $request
   ) use( $app ) {
     // todo: check content type = app/json
-    $requestData = json_decode(
+    $requestData = $request->getContent();
+
+    $jsonDecodedRequestData = json_decode(
       $request->getContent(),
       true
     );
 
     $app['monolog']->addDebug(
-      'request message: ' . $requestData['message']
+      'requestData message: ' . $requestData['message']
+    );
+
+    $app['monolog']->addDebug(
+      'jsonDecodedRequestData message: ' . $jsonDecodedRequestData['message']
     );
 
     $responseData = array(
