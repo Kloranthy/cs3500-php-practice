@@ -55,7 +55,7 @@ $app->post(
     $responseData = array(
       'test1' => 'this is a test',
       'test2' => 'to see how silax does post endpoints',
-      'request' => encode_json( $request )
+      'request' => $request->getContent()
     );
 
     return $app->json(
