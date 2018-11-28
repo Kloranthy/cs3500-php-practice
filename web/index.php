@@ -60,6 +60,8 @@ $app->post(
       'request' => $request->getContent()
     );
 
+    $app['monolog']->addDebug( 'request content: ' . $request->getContent() );
+
     return $app->json(
       $responseData
     );
