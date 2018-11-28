@@ -51,8 +51,7 @@ $app->post(
   function(
     Request $request
   ) use( $app ) {
-    $app['monolog']->addDebug( 'logging output.' );
-
+    $app['monolog']->addDebug( 'request content: ' . $request->getContent() );
 
     $responseData = array(
       'test1' => 'this is a test',
@@ -60,7 +59,6 @@ $app->post(
       'request' => $request->getContent()
     );
 
-    $app['monolog']->addDebug( 'request content: ' . $request->getContent() );
 
     return $app->json(
       $responseData
