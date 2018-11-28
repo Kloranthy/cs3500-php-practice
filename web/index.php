@@ -55,8 +55,12 @@ $app->post(
     $requestData = $request->getContent();
 
     $jsonDecodedRequestData = json_decode(
-      $request->getContent(),
+      $requestData,
       true
+    );
+
+    $app['monolog']->addDebug(
+      'requestData: ' . $requestData
     );
 
     $app['monolog']->addDebug(
@@ -70,7 +74,7 @@ $app->post(
     $responseData = array(
       'test1' => 'this is a test',
       'test2' => 'to see how silax does post endpoints',
-      'requestMessage' => $requestData['message']
+      'requestMessage' => $jsonDecodedRequestData['message']
     );
 
 
